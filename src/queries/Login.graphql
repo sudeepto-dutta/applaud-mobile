@@ -1,0 +1,5 @@
+mutation LoginUser {
+  loginUser(input: {email: "mehul.thakkar@tech9.com"}) {
+    isLoggedIn
+  }
+}
