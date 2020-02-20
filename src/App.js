@@ -39,7 +39,7 @@ function DetailsScreen({navigation}) {
 
 const {Navigator, Screen} = createStackNavigator();
 
-const example = apolloClient
+const client = apolloClient
   .mutate({
     mutation: gql`
       mutation {
@@ -54,7 +54,7 @@ const example = apolloClient
 
 function App() {
   return (
-    <ApolloProvider client={example}>
+    <ApolloProvider client={client}>
       <NavigationContainer>
         <Navigator initialRouteName="Home">
           <Screen
