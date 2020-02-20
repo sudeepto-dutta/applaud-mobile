@@ -3,6 +3,9 @@ import * as React from 'react';
 import {View, Text, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {gql} from 'apollo-boost';
+import {apolloClient} from './core/ApolloProvider';
+import {ApolloProvider} from '@apollo/react-hooks';
 
 function HomeScreen({navigation}) {
   return (
@@ -36,18 +39,33 @@ function DetailsScreen({navigation}) {
 
 const {Navigator, Screen} = createStackNavigator();
 
+const example = apolloClient
+  .mutate({
+    mutation: gql`
+      mutation {
+        loginUser(input: {email: "mehul.thakkar@tech9.com"}) {
+          isLoggedIn
+        }
+      }
+    `,
+  })
+  .then(data => console.log('data ', data))
+  .catch(error => console.log('error ', error));
+
 function App() {
   return (
-    <NavigationContainer>
-      <Navigator initialRouteName="Home">
-        <Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'Overview'}}
-        />
-        <Screen name="Details" component={DetailsScreen} />
-      </Navigator>
-    </NavigationContainer>
+    <ApolloProvider client={example}>
+      <NavigationContainer>
+        <Navigator initialRouteName="Home">
+          <Screen
+            name="Home"
+            component={HomeScreen}
+            options={{title: 'Overview'}}
+          />
+          <Screen name="Details" component={DetailsScreen} />
+        </Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
 
