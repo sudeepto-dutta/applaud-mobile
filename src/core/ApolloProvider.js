@@ -1,8 +1,8 @@
 import ApolloClient from 'apollo-boost';
+import {REACT_APP_GRAPHQL_URL} from 'react-native-dotenv';
 
 export const apolloClient = new ApolloClient({
-  uri:
-    'https://dwtoec86lh.execute-api.us-west-2.amazonaws.com/local/admin/graphql',
+  uri: REACT_APP_GRAPHQL_URL,
   fetchOptions: {
     fetchOptions: {
       mode: 'no-cors',
