@@ -1,4 +1,5 @@
-mutation LoginUser {
+
+mutation LoginUser($input: LoginUserInput) {
   loginUser(input: {email: "mehul.thakkar@tech9.com"}) {
     isLoggedIn
   }

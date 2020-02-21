@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {gql} from 'apollo-boost';
 import {apolloClient} from './core/ApolloProvider';
 import {ApolloProvider} from '@apollo/react-hooks';
+import StackNavigator from './navigators/StackNavigator';
 
 function HomeScreen({navigation}) {
   return (
@@ -55,16 +56,7 @@ const client = apolloClient
 function App() {
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer>
-        <Navigator initialRouteName="Home">
-          <Screen
-            name="Home"
-            component={HomeScreen}
-            options={{title: 'Overview'}}
-          />
-          <Screen name="Details" component={DetailsScreen} />
-        </Navigator>
-      </NavigationContainer>
+      <StackNavigator />
     </ApolloProvider>
   );
 }

@@ -1,6 +1,6 @@
 /* @flow */
 
-import {type GraphQLResolveInfo} from 'graphql';
+import {type GraphQLResolveInfo, type GraphQLScalarTypeConfig} from 'graphql';
 export type $RequireFields<Origin, Keys> = $Diff<Origin, Keys> &
   $ObjMapi<Keys, <Key>(k: Key) => $NonMaybeType<$ElementType<Origin, Key>>>;
 /** All built-in and custom scalars, mapped to their actual values */
